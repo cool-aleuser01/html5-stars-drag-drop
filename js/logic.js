@@ -1,45 +1,31 @@
 // more details about JavaScript module patterns are here:
 // http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html
-var MyModule = (function($) {
+var AnimationModule = (function($) {
 
-  var privateVar = "secret";
-  this.publicVar1 = "public1";
+  /**
+   * Initialize module and register click events on div elements with animatable
+   * class set.
+   */
+  this.init = function() {
 
-  var privateFunction = function() {
-    console.log('Pssst! Don\' tell anyone! It is ' + privateVar + '!');
-  };
+    var $animatables = $('div.animatable');
 
-  this.publicFunction = function() {
-    this.publicVar2 = "public2";
-    console.log('This is a JavaScript module pattern: ' + this.publicVar1 + ' and ' + this.publicVar2);
-  };
+    // need to set position to relative or absolute, otherwise animation does
+    // not work
+    $animatables.css('position', 'relative');
 
-  this.callPrivateFunction = function() {
-    privateFunction();
-    console.log('This is the private variable: ' + privateVar);
-  };
+    // add event to animate elements
+    $animatables.on('click', function(e) {
 
-  this.listElements = function() {
-    console.log($('blue'));
-    console.log($('class1'));
-    console.log($('div'));
-  };
+      console.log('clicked on div element');
 
-  this.manipulateElements = function() {
-    var $blue = $('#blue');
-    // single css value
-    $blue.css('color', 'orange');
-
-    // multple values at once
-    $blue.css({
-      'fontSize': '24px',
-      'width': '200px',
-      'height': '160px'
-    });
-
-    $('.class1').each(function(el) {
-      var $class1 = $(el);
-      $class1.css('background-color', 'orange');
+      // get the clicked element
+      var target = e.currentTarget;
+      $(target).animate({
+        left: '+=50'
+      }, 3000, function() {
+        console.log('animation complete');
+      });
     });
   };
 
@@ -48,14 +34,6 @@ var MyModule = (function($) {
 
 // example how to call module code
 $(function() {
-  console.log(MyModule);
-  MyModule.publicFunction();
-  MyModule.callPrivateFunction();
-
-  MyModule.listElements();
-  MyModule.manipulateElements();
-
-  // this function call will result in an error because privateFunction is not
-  // publicly visible.
-  MyModule.privateFunction();
+  console.log(AnimationModule);
+  var module = AnimationModule.init();
 });
