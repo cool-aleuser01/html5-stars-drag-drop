@@ -1,21 +1,24 @@
-/**
- * This function is called once the document/body has loaded completely. After this
- * event was called the DOM is ready. See body tag onload!
- */
-function documentLoaded() {
-  console.log(document.getElementById('blue'));
-  console.log(document.getElementsByClassName('class1'));
-  console.log(document.getElementsByTagName('div'));
+// Everything inside of this function is called after the document is ready and
+// is short for $(document).ready(function() {});
+$(function() {
 
-  var blue = document.getElementById('blue');
-  blue.style.color = 'orange';
-  blue.style.fontSize = '24px';
-  blue.style.width = '200px';
-  blue.style.height = '160px';
+  console.log($('blue'));
+  console.log($('class1'));
+  console.log($('div'));
 
-  var class1s = document.getElementsByClassName('class1');
-  for (var i = 0; i < class1s.length; i++) {
-    var class1 = class1s[i];
-    class1.style.backgroundColor = 'orange';
-  }
-};
+  var $blue = $('#blue');
+  // single css value
+  $blue.css('color', 'orange');
+
+  // multple values at once
+  $blue.css({
+    'fontSize': '24px',
+    'width': '200px',
+    'height': '160px'
+  });
+
+  $('.class1').each(function(el) {
+    var $class1 = $(el);
+    $class1.css('background-color', 'orange');
+  });
+});
