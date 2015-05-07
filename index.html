@@ -2,37 +2,28 @@
   <head>
     <title>Web Intro</title>
     <style media="screen">
+      section {
+        border: 1px solid black;
+        margin: 20px;
+        width: 800px;
+        height: 600px;
+      }
+
       div {
-        font-size: 18px;
-      }
-
-      span {
-        font-size: 1.6em;
-      }
-
-      #div2 {
-        color: red;
-        background-color: blue;
-        font-family: "Arial", sans-serif;
-        font-weight: bold;
-        font-style: italic;
-      }
-
-      .green-big {
-        background-color: green;
-        font-size: 2.4em;
+        font-size: 10px;
+        width: 100px;
+        height: 60px;
       }
     </style>
   </head>
   <body>
-    <h1>&lt;div&gt; vs. &lt;span&gt;
-    <div class="green-big">I am div1</div>
-    <div id="div2" class="green-big">I am div2</div>
-    <span class="green-big">I am span1</span>
-    <span class="green-big">I am span2</span>
-    <span>I am span3</span>
-    <div class="green-big">I am div3</div>
-    <span>I am span4</span>
-    <div>I am div4</div>
+    <h1>Basic Positioning</h1>
+    <section>
+      <h1>Left/Top/Right/Bottom</h1>
+      <div style="background-color: red; position: absolute; left: 0px; bottom: 0px;">I am div1</div>
+      <div style="background-color: blue; position: relative; top: 20px; left: 80px;">I am div2</div>
+      <div style="background-color: green; position: absolute; top: 20px; left: 80px;">I am div3</div>
+      <div style="background-color: yellow; position: fixed; top: 20px; right: 80px;">I am div4</div>
+    </section>
   </body>
 </html>
