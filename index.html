@@ -5,8 +5,6 @@
       section {
         border: 1px solid black;
         margin: 20px;
-        width: 800px;
-        height: 600px;
       }
 
       div {
@@ -14,16 +12,46 @@
         width: 100px;
         height: 60px;
       }
+
+      .rotate10 {
+        -ms-transform: rotate(10deg);
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+        background-color: yellow !important;
+      }
+
+      .green-big {
+        background-color: green;
+        font-size: 2.4em;
+      }
+
+      .translate {
+        -ms-transform: translate(120px, 60px);
+        -webkit-transform: translate(120px, 60px);
+        transform: translate(120px, 60px);
+      }
+
+      .rotate {
+        -ms-transform: rotate(10deg);
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+      }
+
+      .combined-transform {
+        -ms-transform: translate(120px, 60px) rotate(10deg);
+        -webkit-transform: translate(120px, 60px) rotate(10deg);
+        transform: translate(120px, 60px) rotate(10deg);
+      }
     </style>
   </head>
   <body>
-    <h1>Basic Positioning</h1>
+    <h1>Basic Transforms</h1>
     <section>
-      <h1>Left/Top/Right/Bottom</h1>
-      <div style="background-color: red; position: absolute; left: 0px; bottom: 0px;">I am div1</div>
-      <div style="background-color: blue; position: relative; top: 20px; left: 80px;">I am div2</div>
-      <div style="background-color: green; position: absolute; top: 20px; left: 80px;">I am div3</div>
-      <div style="background-color: yellow; position: fixed; top: 20px; right: 80px;">I am div4</div>
+      <h1>Absolute</h1>
+      <div class="translate" style="background-color: red;">I am div1</div>
+      <div class="translate" style="background-color: blue;">I am div2</div>
+      <div class="rotate" style="background-color: green;">I am div3</div>
+      <div class="combined-transform" style="background-color: yellow;">I am div4</div>
     </section>
   </body>
 </html>
