@@ -4,101 +4,30 @@
     <link rel="stylesheet" href="/style/style.css" media="screen" charset="utf-8">
   </head>
   <body>
-    <h1>JavaScript Variables &amp; Functions</h1>
+    <h1>JavaScript Access &amp; Manipulate DOM</h1>
     <section>
-      <div class="translate" style="background-color: red;">I am div1</div>
-      <div class="translate" style="background-color: blue;">I am div2</div>
-      <div class="rotate" style="background-color: green;">I am div3</div>
+      <div class="translate class1" style="background-color: red;">I am div1</div>
+      <div id="blue" class="translate" style="background-color: blue;">I am div2</div>
+      <div class="rotate class1" style="background-color: green;">I am div3</div>
       <div class="combined-transform" style="background-color: yellow;">I am div4</div>
     </section>
 
     <script type="text/javascript">
+      console.log(document.getElementById('blue'));
+      console.log(document.getElementsByClassName('class1'));
+      console.log(document.getElementsByTagName('div'));
 
-      // #####################################
-      // Variables
-      // #####################################
+      var blue = document.getElementById('blue');
+      blue.style.color = 'orange';
+      blue.style.fontSize = '24px';
+      blue.style.width = '200px';
+      blue.style.height = '160px';
 
-      // variable assignment
-      var myCarBrand = "Mustang";
-      var myCarYear = 1969;
-
-      console.log(myCarBrand);
-      console.log(myCarYear);
-
-      // object literal
-      var myCar = {
-        brand: "Mustang",
-        year: 1969
+      var class1s = document.getElementsByClassName('class1');
+      for (var i = 0; i < class1s.length; i++) {
+        var class1 = class1s[i];
+        class1.style.backgroundColor = 'orange';
       }
-
-      console.log(myCar);
-
-      // #####################################
-      // Functions 1
-      // #####################################
-
-      // global function, accessible through window context
-      function option1() {
-        console.log("function option 1");
-      };
-      option1();
-
-      // assign funtion to variable
-      var option2 = function() {
-        console.log('function option 2');
-      };
-      option2();
-
-      // #####################################
-      // Functions 2
-      // #####################################
-
-      // function with parameter
-      var helloMyNameIs = function(name) {
-        console.log("Hello, my name is " + name + ".");
-      };
-      helloMyNameIs("Maria");
-      helloMyNameIs("Pedro");
-
-      // function with parameter
-      var helloMyNameIsAndIamOld = function(name, age) {
-        console.log("1: Hello, my name is " + name + " and I am " + age + " years old.");
-
-        // check if age is null or undefined
-        if (age) {
-          console.log("2: Hello, my name is " + name + " and I am " + age + " years old.");
-        }
-        else {
-          console.log("3: Hello, my name is " + name + ".");
-        }
-      };
-      helloMyNameIsAndIamOld("Maria", 24);
-      // if a variable is not defined it has the value 'undefined'.
-      helloMyNameIsAndIamOld("Pedro");
-
-      // #####################################
-      // Functions 3
-      // #####################################
-
-      var x = 10;
-      var printResult = function(y, operation) {
-
-        // only call operation if it is defined and a function
-        if (operation && typeof operation === 'function') {
-          console.log(operation(x, y));
-        }
-      };
-
-      var add = function(x, y) {
-        return x + y;
-      };
-
-      var multiply = function(x, y) {
-        return x * y;
-      };
-
-      printResult(5, add);
-      printResult(5, multiply);
     </script>
   </body>
 </html>
