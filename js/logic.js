@@ -1,21 +1,20 @@
-var person = {
-  team: "FC Bayern München",
-  players: [
-    "Basti Schweinsteiger",
-    "Manuel Neuer",
-    "Mario Götze"
-  ],
-  showTeamPlayers: function() {
+// currying: http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/
+function greet(gender, age, name) {
+  // if a male, use Mr., else use Ms.​
+  var salutation = gender === "male" ? "Mr. " : "Ms. ";
 
-    // store this in outer variable to access it in anonymous function below
-    var that = this;
-
-    // jQuery $.each information: https://api.jquery.com/jquery.each/
-    $.each(this.players, function(index, player) {
-      console.log(this); // this is not referring to person object
-      console.log(index + ": " + player + " plays for " + that.team);
-    });
+  if (age > 25) {
+    return "Hello, " + salutation + name + ".";
   }
-};
+  else {
+    return "Hey, " + name + ".";
+  }
+}
 
-person.showTeamPlayers();
+// So we are passing null because we are not using the "this" keyword in our greet function.​
+var greetAnAdultMale = greet.bind(null, "male", 45);
+console.log(greetAnAdultMale("John Hartlove")); // "Hello, Mr. John Hartlove."​
+
+var greetAYoungster = greet.bind (null, "", 16);
+console.log(greetAYoungster("Alex")); // "Hey, Alex."​
+console.log(greetAYoungster("Emma Waterloo")); // "Hey, Emma Waterloo."​
