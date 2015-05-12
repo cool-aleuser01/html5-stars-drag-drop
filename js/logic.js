@@ -1,44 +1,38 @@
-// more details about JavaScript module patterns are here:
-// http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html
-var AnimationModule = (function($) {
+var person = {
+  firstName: "Basti",
+  lastName: "Schweinsteiger",
+  showFullName: function(format) {
+    if (format && format === "last,first") {
+      console.log("2: " + this.lastName + ", " + this.firstName);
+    }
+    else {
+      console.log("1: " + this.firstName + " " + this.lastName);
+    }
+  }
+};
 
-  /**
-   * Initialize module.
-   */
-  this.init = function() {
-    console.log('init');
-    console.log(this);
+var anotherPerson = {
+  firstName: "Manuel",
+  lastName: "Neuer"
+};
 
-    // init name
-    this.name = 'Maria';
+var yetAnotherPerson = {
+  firstName: "Mario",
+  lastName: "Götze"
+};
 
-    // call unbound function
-    unboundFunction();
+// show full name of person
+person.showFullName();
+person.showFullName('last,first');
 
-    // call bound function
-    boundFunction();
-  };
+// call function of an object with another context object
+person.showFullName.apply(anotherPerson);
+person.showFullName.apply(anotherPerson, ['last,first']);
 
-  /**
-   * In unbound functions this keyword usually refers to window object.
-   */
-  var unboundFunction = function() {
-    console.log('unboundFunction');
-    console.log(this); // window object
-  };
+person.showFullName.call(anotherPerson);
+person.showFullName.call(anotherPerson, 'last,first');
 
-  /**
-   * In bound functions this refers to the bound object.
-   */
-  var boundFunction = function() {
-    console.log('boundFunction');
-    console.log(this); // animation module object
-  }.bind(this);
-
-  return this;
-}).call({}, jQuery); //sweet! we can set this in an IIFE by passing in a blank object literal using the call method
-
-// example how to call module code
-$(function() {
-  var module = AnimationModule.init();
-});
+// use function of another object
+yetAnotherPerson.showFullName = person.showFullName;
+yetAnotherPerson.showFullName();
+yetAnotherPerson.showFullName('last,first');
