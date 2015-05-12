@@ -1,7 +1,10 @@
-// http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/
-function doSomething() {
-  var args = Array.prototype.slice.call(arguments);
-  console.log(args);
-}
+var salad = {
+  type: 'fruit',
+  made: new Date(),
+  by: 'Horst Lichter',
+  ingredients: ['apple', 'banana', 'lemon', 'grape', 'pear']
+};
 
-doSomething("Water", "Salt", "Glue"); // ["Water", "Salt", "Glue"]​
+var serialized = JSON.stringify(salad);
+console.log(serialized);
+console.log(JSON.parse(serialized));
